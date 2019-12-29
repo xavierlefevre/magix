@@ -13,7 +13,7 @@ public class Magix {
 
   public static void main(String[] args) throws IOException {
     if (args.length > 1) {
-      System.out.println("Accepts 0 or 1 argument. Usage: java magix/Magix.java \"magix/basic.txt\"");
+      System.out.println("Accepts 0 or 1 argument. Check readme for usage!");
       System.exit(64);
     } else if (args.length == 1) {
       runFile(args[0]);
@@ -51,12 +51,12 @@ public class Magix {
     }
   }
 
-  static void error(int line, String message) {
-    report(line, "", message);
+  static void error(String type, int line, int position, String message) {
+    report(type, line, "", position, message);
   }
 
-  private static void report(int line, String where, String message) {
-    System.err.println("[line " + line + "] Error" + where + ": " + message);
+  private static void report(String type, int line, String where, int position, String message) {
+    System.err.println("[Error - " + type + where + "] line " + line + " position " + position + " -> " + message);
     hadError = true;
   }
 }

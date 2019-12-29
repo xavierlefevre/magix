@@ -13,6 +13,7 @@ class Scanner {
   private int start = 0;
   private int current = 0;
   private int line = 1;
+  private int linePosition = 0;
 
   Scanner(String source) {
     this.source = source;
@@ -28,7 +29,6 @@ class Scanner {
     tokens.add(new Token(EOF, "", null, line));
     return tokens;
   }
-  // (c
 
   private void scanToken() {
     char c = advance();
@@ -92,10 +92,11 @@ class Scanner {
 
     case '\n':
       line++;
+      linePosition = 0;
       break;
 
     default:
-      Magix.error(line, "Unexpected character.");
+      Magix.error("Unexpected character", line, linePosition, "The character \"" + c + "\" is not valid.");
       break;
     }
   }
@@ -107,6 +108,7 @@ class Scanner {
       return false;
 
     current++;
+    linePosition++;
     return true;
   }
 
@@ -122,6 +124,7 @@ class Scanner {
 
   private char advance() {
     current++;
+    linePosition++;
     return source.charAt(current - 1);
   }
 
