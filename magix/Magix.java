@@ -51,8 +51,12 @@ public class Magix {
     }
   }
 
-  static void error(String type, int line, int position, String message) {
+  static void errorXav(String type, int line, int position, String message) {
     report(type, line, "", position, message);
+  }
+
+  static void error(int line, String message) {
+    report("", line, "", 0, message);
   }
 
   private static void report(String type, int line, String where, int position, String message) {

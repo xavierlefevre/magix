@@ -89,16 +89,39 @@ class Scanner {
     case '\t':
       // Ignore whitespace.
       break;
-
     case '\n':
       line++;
       linePosition = 0;
       break;
+    case '"':
+      string();
+      break;
 
     default:
-      Magix.error("Unexpected character", line, linePosition, "The character \"" + c + "\" is not valid.");
+      Magix.errorXav("Unexpected character", line, linePosition, "The character \"" + c + "\" is not valid.");
       break;
     }
+  }
+
+  private void string() {
+    while (peek() != '"' && !isAtEnd()) {
+      if (peek() == '\n')
+        line++;
+      advance();
+    }
+
+    // Unterminated string.
+    if (isAtEnd()) {
+      Magix.error(line, "Unterminated string.");
+      return;
+    }
+
+    // The closing ".
+    advance();
+
+    // Trim the surrounding quotes.
+    String value = source.substring(start + 1, current - 1);
+    addToken(STRING, value);
   }
 
   private boolean match(char expected) {
