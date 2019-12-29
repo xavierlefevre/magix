@@ -2,5 +2,6 @@
 4 + 2 = 10.1 // Duh...
 "I am good at..
 .. maths"
-8 + y = z // Hum this might make an error
+8 + y = $ // Hum this might make an error
+var xav = 8 + 10;
 "Last but not // error
