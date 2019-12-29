@@ -1,7 +1,9 @@
 // Test code (this is a comment)
 4 + 2 = 10.1 // Duh...
 "I am good at..
-.. maths"
+.. maths" /* hey * / //no bug
+
+c'est moi */ coucou
 8 + y = $ // Hum this might make an error
 var xav = 8 + 10;
 "Last but not // error
