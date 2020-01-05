@@ -5,7 +5,7 @@ Language creation, following the amazing [www.craftinginterpreters.com](http://w
 ## Compile and run
 
 - Compile your program: `javac -d build magix/Magix.java`
-- Run it with an input file: `java -cp build magix/Magix "testFiles/ParserTest.magix"`
+- Run it with an input file: `java -cp build magix/Magix "testFiles/InterpreterTest.magix"`
 - Run it in REPL: `java -cp build magix/Magix`
 
 ## Edit the language
