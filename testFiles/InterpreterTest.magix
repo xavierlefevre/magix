@@ -4,5 +4,7 @@ print true;
 // The result of the below equation is 15.18966:
 print 1223 * (1223 + 19 / 1) / 100000;
 
-// String concat:
-print "Salut " + "j'ai " + (2 + 2) + " frères.";
+// String concat & creating and re-using variables:
+var a = 1;
+var b = 2;
+print "Salut " + "j'ai " + (a + b) + " frères.";
