@@ -22,9 +22,7 @@ while (calculationLoop < slowPhaseRepetitions) {
   totalKilometers = totalKilometers + (slowPhaseKmPerMinutes * repetitionMinutes);
 }
 
-calculationLoop = 0;
-while (calculationLoop < fastPhaseRepetitions) {
-  calculationLoop = calculationLoop + 1;
+for (calculationLoop = 0; calculationLoop < fastPhaseRepetitions; calculationLoop = calculationLoop + 1) {
   totalKilometers = totalKilometers + (fastPhaseKmPerMinutes * repetitionMinutes);
 }
 
