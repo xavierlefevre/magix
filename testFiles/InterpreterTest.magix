@@ -10,6 +10,9 @@ var b = 2;
 a = 3;
 print "Salut " + "j'ai " + (a + b) + " frères.";
 
+print "hi" or 2; // "hi".
+print nil or "yes"; // "yes".
+
 var a = "global a";
 var b = "global b";
 var c = "global c";
