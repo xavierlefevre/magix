@@ -1,34 +1,38 @@
-// Accepting Boolean
-print true;
+// Calculate my average run training speed and time
+// which consists of slow then fast phases
 
-// The result of the below equation is 15.18966:
-print 1223 * (1223 + 19 / 1) / 100000;
+// Init context
+var slowPhaseKmPerHours = 11;
+var slowPhaseRepetitions = 4;
+var fastPhaseKmPerHours = 15;
+var fastPhaseRepetitions = 4;
+var repetitionMinutes = 2;
 
-// String concat & creating and re-using variables:
-var a = 1;
-var b = 2;
-a = 3;
-print "Salut " + "j'ai " + (a + b) + " frères.";
+// Init calculus
+var averageSpeed;
+var totalKilometers = 0;
+var totalMinutes = 0;
 
-print "hi" or 2; // "hi".
-print nil or "yes"; // "yes".
+var slowPhaseKmPerMinutes = slowPhaseKmPerHours / 60;
+var fastPhaseKmPerMinutes = fastPhaseKmPerHours / 60;
 
-var a = "global a";
-var b = "global b";
-var c = "global c";
-{
-  var a = "outer a";
-  var b = "outer b";
-  {
-    var a = "inner a";
-    print a;
-    print b;
-    print c;
-  }
-  print a;
-  print b;
-  print c;
+var calculationLoop = 0;
+while (calculationLoop < slowPhaseRepetitions) {
+  calculationLoop = calculationLoop + 1;
+  totalKilometers = totalKilometers + (slowPhaseKmPerMinutes * repetitionMinutes);
 }
-print a;
-print b;
-print c;
+
+calculationLoop = 0;
+while (calculationLoop < fastPhaseRepetitions) {
+  calculationLoop = calculationLoop + 1;
+  totalKilometers = totalKilometers + (fastPhaseKmPerMinutes * repetitionMinutes);
+}
+
+totalMinutes = repetitionMinutes * (fastPhaseRepetitions + slowPhaseRepetitions);
+
+averageSpeed = totalKilometers / (totalMinutes / 60);
+
+// Print the results
+print "Average speed ran: " + averageSpeed + "km/h";
+print "Total kilometers ran: " + totalKilometers + "km";
+print "Number of minutes ran: " + totalMinutes + "minutes";
