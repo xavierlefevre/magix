@@ -347,13 +347,14 @@ class Parser {
     if (match(NIL))
       return new Expr.Literal(null);
 
-    if (match(NUMBER, STRING)) {
+    if (match(NUMBER, STRING))
       return new Expr.Literal(previous().literal);
-    }
 
-    if (match(IDENTIFIER)) {
+    if (match(THIS))
+      return new Expr.This(previous());
+
+    if (match(IDENTIFIER))
       return new Expr.Variable(previous());
-    }
 
     if (match(LEFT_PAREN)) {
       Expr expr = expression();
@@ -419,15 +420,15 @@ class Parser {
         return;
 
       switch (peek().type) {
-      case CLASS:
-      case FUN:
-      case VAR:
-      case FOR:
-      case IF:
-      case WHILE:
-      case PRINT:
-      case RETURN:
-        return;
+        case CLASS:
+        case FUN:
+        case VAR:
+        case FOR:
+        case IF:
+        case WHILE:
+        case PRINT:
+        case RETURN:
+          return;
       }
 
       advance();

@@ -11,6 +11,12 @@ class MagixFunction implements MagixCallable {
     this.declaration = declaration;
   }
 
+  MagixFunction bind(MagixInstance instance) {
+    Environment environment = new Environment(closure);
+    environment.define("this", instance);
+    return new MagixFunction(declaration, environment);
+  }
+
   @Override
   public Object call(Interpreter interpreter, List<Object> arguments) {
     Environment environment = new Environment(closure);
