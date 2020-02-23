@@ -4,19 +4,23 @@ class Bacon {
   }
 }
 
-Bacon().eat(); // Prints "Crunch crunch crunch!".
+Bacon().eat();
 
 class Cake {
+  init(ingredient) {
+    this.ingredient = ingredient;
+  }
+
   good() {
     return "crazily";
   }
 
   taste() {
     var adjective = "delicious";
-    print "The " + this.flavor + " cake is " + this.good() + " " + adjective + "!";
+    print "The " + this.flavor + " cake is " + this.good() + " " + adjective + " thanks to " + this.ingredient + "!";
   }
 }
 
-var cake = Cake();
+var cake = Cake("lemon");
 cake.flavor = "German chocolate";
-cake.taste(); // Prints "The German chocolate cake is delicious!".
+cake.taste();
