@@ -196,7 +196,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     Map<String, MagixFunction> methods = new HashMap<>();
     for (Stmt.Function method : stmt.methods) {
-      MagixFunction function = new MagixFunction(method, environment);
+      MagixFunction function = new MagixFunction(method, environment, method.name.lexeme.equals("init"));
       methods.put(method.name.lexeme, function);
     }
 
@@ -214,7 +214,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
   @Override
   public Void visitFunctionStmt(Stmt.Function stmt) {
-    MagixFunction function = new MagixFunction(stmt, environment);
+    MagixFunction function = new MagixFunction(stmt, environment, false);
     environment.define(stmt.name.lexeme, function);
     return null;
   }

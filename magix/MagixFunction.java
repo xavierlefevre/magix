@@ -5,8 +5,10 @@ import java.util.List;
 class MagixFunction implements MagixCallable {
   private final Stmt.Function declaration;
   private final Environment closure;
+  private final boolean isInitializer;
 
-  MagixFunction(Stmt.Function declaration, Environment closure) {
+  MagixFunction(Stmt.Function declaration, Environment closure, boolean isInitializer) {
+    this.isInitializer = isInitializer;
     this.closure = closure;
     this.declaration = declaration;
   }
@@ -14,7 +16,7 @@ class MagixFunction implements MagixCallable {
   MagixFunction bind(MagixInstance instance) {
     Environment environment = new Environment(closure);
     environment.define("this", instance);
-    return new MagixFunction(declaration, environment);
+    return new MagixFunction(declaration, environment, isInitializer);
   }
 
   @Override
@@ -27,8 +29,14 @@ class MagixFunction implements MagixCallable {
     try {
       interpreter.executeBlock(declaration.body, environment);
     } catch (Return returnValue) {
+      if (isInitializer)
+        return closure.getAt(0, "this");
+
       return returnValue.value;
     }
+
+    if (isInitializer)
+      return closure.getAt(0, "this");
     return null;
   }
 
