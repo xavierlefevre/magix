@@ -5,9 +5,11 @@ import java.util.Map;
 
 class MagixClass implements MagixCallable {
   final String name;
+  final MagixClass superclass;
   private final Map<String, MagixFunction> methods;
 
-  MagixClass(String name, Map<String, MagixFunction> methods) {
+  MagixClass(String name, MagixClass superclass, Map<String, MagixFunction> methods) {
+    this.superclass = superclass;
     this.name = name;
     this.methods = methods;
   }
@@ -15,6 +17,10 @@ class MagixClass implements MagixCallable {
   MagixFunction findMethod(String name) {
     if (methods.containsKey(name)) {
       return methods.get(name);
+    }
+
+    if (superclass != null) {
+      return superclass.findMethod(name);
     }
 
     return null;
